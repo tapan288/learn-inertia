@@ -4,7 +4,9 @@ import { Head } from "@inertiajs/vue3";
 </script>
 
 <template>
-    <Head title="Comments" />
+    <Head title="Comments">
+        <meta name="description" content="Comments Index" />
+    </Head>
 
     <AuthenticatedLayout>
         <template #header>
