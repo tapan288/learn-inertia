@@ -20,15 +20,35 @@ defineProps({
         </template>
 
         <div class="py-12">
-            <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-3">
+                <form
+                    class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6"
+                >
+                    <label for="body" class="sr-only">Body</label>
+                    <textarea
+                        name="body"
+                        id="body"
+                        cols="30"
+                        rows="5"
+                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
+                    ></textarea>
+                    <button
+                        type="submit"
+                        class="mt-2 bg-gray-700 px-4 py-2 rounded-md font-medium text-white"
+                    >
+                        Post
+                    </button>
+                </form>
                 <div v-for="post in posts.data" :key="post.id">
                     <div
                         class="bg-white overflow-hidden shadow-sm sm:rounded-lg"
                     >
-                        <div class="font-semibold">
-                            {{ post.user.name }}
+                        <div class="p-6 text-gray-900">
+                            <div class="font-semibold">
+                                {{ post.user.name }}
+                            </div>
+                            <p class="mt-1">{{ post.body }}</p>
                         </div>
-                        <p class="mt-1">{{ post.body }}</p>
                     </div>
                 </div>
             </div>
