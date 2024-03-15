@@ -21,11 +21,14 @@ defineProps({
 
         <div class="py-12">
             <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-                <div v-for="post in posts" :key="post.id">
+                <div v-for="post in posts.data" :key="post.id">
                     <div
                         class="bg-white overflow-hidden shadow-sm sm:rounded-lg"
                     >
-                        <div class="p-6 text-gray-900">{{ post.body }}</div>
+                        <div class="font-semibold">
+                            {{ post.user.name }}
+                        </div>
+                        <p class="mt-1">{{ post.body }}</p>
                     </div>
                 </div>
             </div>
