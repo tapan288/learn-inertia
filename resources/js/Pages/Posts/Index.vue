@@ -1,9 +1,13 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/vue3";
+import { Head, useForm } from "@inertiajs/vue3";
 
 defineProps({
     posts: Object,
+});
+
+const form = useForm({
+    body: "",
 });
 </script>
 
@@ -26,6 +30,7 @@ defineProps({
                 >
                     <label for="body" class="sr-only">Body</label>
                     <textarea
+                        v-model="form.body"
                         name="body"
                         id="body"
                         cols="30"
