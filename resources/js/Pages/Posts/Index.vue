@@ -41,6 +41,7 @@ const createPost = () => {
                     <label for="body" class="sr-only">Body</label>
                     <textarea
                         v-model="form.body"
+                        v-on:focus="form.clearErrors('body')"
                         name="body"
                         id="body"
                         cols="30"
