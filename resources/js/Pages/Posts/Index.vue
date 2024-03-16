@@ -1,9 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, useForm } from "@inertiajs/vue3";
+import { Head, router, useForm } from "@inertiajs/vue3";
 
 defineProps({
     posts: Object,
+    now: String,
 });
 
 const form = useForm({
@@ -16,6 +17,17 @@ const createPost = () => {
             form.reset();
         },
     });
+};
+
+const refreshPosts = () => {
+    router.get(
+        route("posts.index"),
+        {},
+        {
+            only: ["posts", "now"],
+            preserveScroll: true,
+        }
+    );
 };
 </script>
 
@@ -33,7 +45,6 @@ const createPost = () => {
 
         <div class="py-12">
             <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-3">
-                {{ form }}
                 <form
                     @submit.prevent="createPost"
                     class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6"
@@ -60,6 +71,17 @@ const createPost = () => {
                         Post
                     </button>
                 </form>
+                {{ now }}
+                <div class="py-3 flex justify-center">
+                    <button
+                        @click="refreshPosts"
+                        class="text-sm text-indigo-700"
+                        type="button"
+                    >
+                        Refresh posts
+                    </button>
+                </div>
+
                 <div v-for="post in posts.data" :key="post.id">
                     <div
                         class="bg-white overflow-hidden shadow-sm sm:rounded-lg"

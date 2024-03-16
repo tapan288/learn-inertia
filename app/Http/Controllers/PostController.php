@@ -15,12 +15,13 @@ class PostController extends Controller
 
         return inertia()->render('Posts/Index', [
             'posts' => PostResource::collection($posts),
+            'now' => now(),
         ]);
     }
 
     public function store(StorePostRequest $request)
     {
-        sleep(5);
+        // sleep(5);
 
         auth()->user()->posts()->create($request->validated());
 
