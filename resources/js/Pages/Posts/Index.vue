@@ -11,7 +11,11 @@ const form = useForm({
 });
 
 const createPost = () => {
-    form.post(route("posts.store"));
+    form.post(route("posts.store"), {
+        onSuccess: () => {
+            form.reset();
+        },
+    });
 };
 </script>
 
@@ -29,6 +33,7 @@ const createPost = () => {
 
         <div class="py-12">
             <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-3">
+                {{ form }}
                 <form
                     @submit.prevent="createPost"
                     class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6"
