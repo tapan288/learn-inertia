@@ -1,10 +1,12 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, router, useForm } from "@inertiajs/vue3";
+import { Head, router, useForm, usePage } from "@inertiajs/vue3";
 
 defineProps({
     posts: Object,
 });
+
+// const page = usePage();
 
 const form = useForm({
     body: "",
@@ -44,6 +46,7 @@ const refreshPosts = () => {
 
         <div class="py-12">
             <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-3">
+                <!-- {{ page.props.greeting }} -->
                 <form
                     @submit.prevent="createPost"
                     class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6"
