@@ -11,11 +11,10 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('user')->get();
+        $posts = Post::with('user')->latest()->get();
 
         return inertia()->render('Posts/Index', [
             'posts' => PostResource::collection($posts),
-            'now' => now(),
         ]);
     }
 

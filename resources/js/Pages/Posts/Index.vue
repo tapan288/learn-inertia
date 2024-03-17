@@ -4,7 +4,6 @@ import { Head, router, useForm } from "@inertiajs/vue3";
 
 defineProps({
     posts: Object,
-    now: String,
 });
 
 const form = useForm({
@@ -24,7 +23,7 @@ const refreshPosts = () => {
         route("posts.index"),
         {},
         {
-            only: ["posts", "now"],
+            only: ["posts"],
             preserveScroll: true,
         }
     );
@@ -71,7 +70,6 @@ const refreshPosts = () => {
                         Post
                     </button>
                 </form>
-                {{ now }}
                 <div class="py-3 flex justify-center">
                     <button
                         @click="refreshPosts"
@@ -80,6 +78,15 @@ const refreshPosts = () => {
                     >
                         Refresh posts
                     </button>
+
+                    <!-- <Link
+                        preserve-scroll
+                        :only="['posts']"
+                        :href="route('posts.index')"
+                        class="text-sm text-indigo-700"
+                    >
+                        Refresh posts
+                    </Link> -->
                 </div>
 
                 <div v-for="post in posts.data" :key="post.id">
