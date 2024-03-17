@@ -1,12 +1,13 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, router, useForm, usePage } from "@inertiajs/vue3";
+import { useToast } from "vue-toastification";
 
 defineProps({
     posts: Object,
 });
 
-// const page = usePage();
+const toast = useToast();
 
 const form = useForm({
     body: "",
@@ -16,6 +17,7 @@ const createPost = () => {
     form.post(route("posts.store"), {
         onSuccess: () => {
             form.reset();
+            toast.success("Post created successfully");
         },
     });
 };
