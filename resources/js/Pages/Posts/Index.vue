@@ -1,27 +1,11 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, router, useForm, usePage } from "@inertiajs/vue3";
-import { watch } from "vue";
-import { useToast } from "vue-toastification";
+import { Head, router, useForm } from "@inertiajs/vue3";
 
 defineProps({
     posts: Object,
     can: Object,
 });
-
-const toast = useToast();
-const page = usePage();
-
-watch(
-    () => page.props.message,
-    (message) => {
-        if (message) {
-            toast(message.body, {
-                type: message.type,
-            });
-        }
-    }
-);
 
 const form = useForm("StorePost", {
     body: "",
@@ -31,7 +15,6 @@ const createPost = () => {
     form.post(route("posts.store"), {
         onSuccess: () => {
             form.reset();
-            // toast.success("Post created successfully");
         },
     });
 };
@@ -63,7 +46,6 @@ const refreshPosts = () => {
 
         <div class="py-12">
             <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-3">
-                <!-- {{ page.props.greeting }} -->
                 <form
                     v-if="can.post_create"
                     @submit.prevent="createPost"
