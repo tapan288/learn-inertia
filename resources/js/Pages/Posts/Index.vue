@@ -22,7 +22,7 @@ watch(
     }
 );
 
-const form = useForm({
+const form = useForm("StorePost", {
     body: "",
 });
 
