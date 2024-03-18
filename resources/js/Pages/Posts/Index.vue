@@ -6,6 +6,7 @@ import { useToast } from "vue-toastification";
 
 defineProps({
     posts: Object,
+    can: Object,
 });
 
 const toast = useToast();
@@ -64,6 +65,7 @@ const refreshPosts = () => {
             <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-3">
                 <!-- {{ page.props.greeting }} -->
                 <form
+                    v-if="can.post_create"
                     @submit.prevent="createPost"
                     class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6"
                 >

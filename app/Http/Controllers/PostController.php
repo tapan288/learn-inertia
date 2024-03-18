@@ -15,6 +15,9 @@ class PostController extends Controller
 
         return inertia()->render('Posts/Index', [
             'posts' => PostResource::collection($posts),
+            'can' => [
+                'post_create' => auth()->user()->can('create', Post::class)
+            ]
         ]);
     }
 
