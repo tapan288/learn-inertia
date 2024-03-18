@@ -42,6 +42,7 @@ const refreshPosts = () => {
         {
             only: ["posts"],
             preserveScroll: true,
+            preserveState: true,
         }
     );
 };
