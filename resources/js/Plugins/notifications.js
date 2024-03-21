@@ -8,7 +8,7 @@ export const notifications = () => {
     router.on("finish", () => {
         const message = page.props.message;
 
-        if (message) {
+        if (message.body) {
             toast(message.body, {
                 type: message.type,
             });
