@@ -22,7 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->respond(function (Response $response) {
-            if (in_array($response->getStatusCode(), [403, 404])) {
+            if (shouldRenderCustomErrorPage() && in_array($response->getStatusCode(), [403, 404])) {
                 return Inertia::render('Error', [
                     'status' => $response->getStatusCode(),
                 ]);
@@ -31,3 +31,14 @@ return Application::configure(basePath: dirname(__DIR__))
             return $response;
         });
     })->create();
+
+function shouldRenderCustomErrorPage()
+{
+    if (app()->environment(['local', 'testing'])) {
+        return false;
+    }
+
+    if (config('app.custom_error_pages_enabled')) {
+        return true;
+    }
+}
